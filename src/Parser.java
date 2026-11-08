@@ -47,7 +47,7 @@ class Parser {
     // text -> TEXT COLOR number_list AT number_list STRING ';'
 
     private void parseImages(Scene scene, Token imageToken) throws LexicalError, SyntaxError, IOException {
-        int height, width, offset, radius;
+        int height, width, offset, radius, sides;
         verifyNextToken(Token.COLOR);
         int[] colors = getNumberList(3);
         Color color = new Color(colors[0], colors[1], colors[2]);
@@ -77,13 +77,29 @@ class Parser {
                 scene.addImage(rectangle);
             }
             case Token.PARALLELOGRAM -> {
-
+                // Added case for Parallelogram using the first point as upperLeft
+                int[] tempList = getNumberList(2);
+                Point lowerRight = new Point(tempList[0], tempList[1]);
+                verifyNextToken(Token.OFFSET);
+                verifyNextToken(Token.NUMBER);
+                offset = lexer.getNumber();
+                Parallelogram para = new Parallelogram(color, point, lowerRight, offset);
+                scene.addImage(para);
 
             }
             case Token.REGULAR_POLYGON -> {
-
+                // Added case for a Regular Polygon using the point as center
+                verifyNextToken(Token.SIDES);
+                verifyNextToken(Token.NUMBER);
+                sides = lexer.getNumber();
+                verifyNextToken(Token.RADIUS);
+                verifyNextToken(Token.NUMBER);
+                radius = lexer.getNumber();
+                RegularPolygon regPoly = new RegularPolygon(color, sides, point, radius);
+                scene.addImage(regPoly);
             }
             case Token.ISOSCELES -> {
+                // Added case for Isosceles triangle using first point as the upperVertex
                 verifyNextToken(Token.HEIGHT);
                 verifyNextToken(Token.NUMBER);
                 height = lexer.getNumber();
@@ -94,7 +110,7 @@ class Parser {
                 scene.addImage(triangle);
             }
             case Token.TEXT -> {
-                // TODO: Figure out why this color doesn't apply properly
+                // Added a case to draw a text string
                 verifyNextToken(Token.STRING);
                 String textValue = lexer.getLexeme();
                 Text textDraw = new Text(color, location, textValue);

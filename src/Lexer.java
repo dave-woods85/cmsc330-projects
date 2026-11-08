@@ -36,7 +36,7 @@ class Lexer {
                 return Token.IDENTIFIER;
             case StreamTokenizer.TT_EOF:
                 return Token.EOF;
-            case 34:
+            case 34: // case for String token. 34 is the char value for " which seems to work best
                 return Token.STRING;
             default:
                 for (int i = 0; i < punctuation.length(); i++)
