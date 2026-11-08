@@ -41,6 +41,10 @@ class Parser {
     // image -> right_triangle | rectangle
     // right_triangle -> RIGHT_TRIANGLE COLOR number_list AT number_list HEIGHT NUMBER WIDTH NUMBER ';'
     // rectangle -> RECTANGLE_ COLOR number_list AT number_list HEIGHT NUMBER WIDTH NUMBER ';'
+    // parallelogram -> PARALLELOGRAM COLOR number_list AT number_list number_list OFFSET NUMBER ';'
+    // regular_polygon -> REGULAR_POLYGON COLOR number_list AT number_list SIDES NUMBER RADIUS NUMBER ';'
+    // isosceles -> ISOSCELES COLOR number_list AT number_list HEIGHT NUMBER WIDTH NUMBER ';'
+    // text -> TEXT COLOR number_list AT number_list STRING ';'
 
     private void parseImages(Scene scene, Token imageToken) throws LexicalError, SyntaxError, IOException {
         int height, width, offset, radius;
@@ -50,27 +54,58 @@ class Parser {
         verifyNextToken(Token.AT);
         int[] location = getNumberList(2);
         Point point = new Point(location[0], location[1]);
-        if (imageToken == Token.RIGHT_TRIANGLE) {
-            verifyNextToken(Token.HEIGHT);
-            verifyNextToken(Token.NUMBER);
-            height = lexer.getNumber();
-            verifyNextToken(Token.WIDTH);
-            verifyNextToken(Token.NUMBER);
-            width = lexer.getNumber();
-            RightTriangle triangle = new RightTriangle(color, point, height, width);
-            scene.addImage(triangle);
-        } else if (imageToken == Token.RECTANGLE) {
-            verifyNextToken(Token.HEIGHT);
-            verifyNextToken(Token.NUMBER);
-            height = lexer.getNumber();
-            verifyNextToken(Token.WIDTH);
-            verifyNextToken(Token.NUMBER);
-            width = lexer.getNumber();
-            Rectangle rectangle = new Rectangle(color, point, height, width);
-            scene.addImage(rectangle);
-        } else {
-             throw new SyntaxError(lexer.getLineNo(), "Unexpected image name " + imageToken);
+        // Changed to a switch-case statement because of the number of options
+        switch (imageToken){
+            case Token.RIGHT_TRIANGLE -> {
+                verifyNextToken(Token.HEIGHT);
+                verifyNextToken(Token.NUMBER);
+                height = lexer.getNumber();
+                verifyNextToken(Token.WIDTH);
+                verifyNextToken(Token.NUMBER);
+                width = lexer.getNumber();
+                RightTriangle triangle = new RightTriangle(color, point, height, width);
+                scene.addImage(triangle);
+            }
+            case Token.RECTANGLE -> {
+                verifyNextToken(Token.HEIGHT);
+                verifyNextToken(Token.NUMBER);
+                height = lexer.getNumber();
+                verifyNextToken(Token.WIDTH);
+                verifyNextToken(Token.NUMBER);
+                width = lexer.getNumber();
+                Rectangle rectangle = new Rectangle(color, point, height, width);
+                scene.addImage(rectangle);
+            }
+            case Token.PARALLELOGRAM -> {
+
+
+            }
+            case Token.REGULAR_POLYGON -> {
+
+            }
+            case Token.ISOSCELES -> {
+                verifyNextToken(Token.HEIGHT);
+                verifyNextToken(Token.NUMBER);
+                height = lexer.getNumber();
+                verifyNextToken(Token.WIDTH);
+                verifyNextToken(Token.NUMBER);
+                width = lexer.getNumber();
+                IsoscelesTriangle triangle = new IsoscelesTriangle(color, point, height, width);
+                scene.addImage(triangle);
+            }
+            case Token.TEXT -> {
+                // TODO: Figure out why this color doesn't apply properly
+                verifyNextToken(Token.STRING);
+                String textValue = lexer.getLexeme();
+                Text textDraw = new Text(color, location, textValue);
+                scene.addImage(textDraw);
+
+            }
+            default -> {
+                throw new SyntaxError(lexer.getLineNo(), "Unexpected image name " + imageToken);
+            }
         }
+
         verifyNextToken(Token.SEMICOLON);
         token = lexer.getNextToken();
         if (token != Token.END)

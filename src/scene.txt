@@ -1,4 +1,6 @@
 Scene Polygons (500, 500)
   RightTriangle Color (255, 0, 0) at (50, 30) Height 100 Width 300;
   Rectangle Color (0, 128, 255) at (100, 100) Height 200 Width 100;
+  Isosceles Color (255, 0, 0) at (120, 120) Height 100 Width 200;
+  Text Color (0, 0, 0) at (400, 200) "Hello World";
 End.
