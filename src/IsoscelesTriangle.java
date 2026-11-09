@@ -1,3 +1,12 @@
+/*
+David Woods
+CMSC 330
+Project1
+Prof Suciu
+5 Nov 2026
+
+This class gives the drawing calculations for an isosceles triangle using a top vertex, width and height.
+*/
 import java.awt.*;
 
 public class IsoscelesTriangle extends SolidPolygon{

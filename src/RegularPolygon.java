@@ -1,3 +1,13 @@
+/*
+David Woods
+CMSC 330
+Project1
+Prof Suciu
+5 Nov 2026
+
+This class gives the drawing calculations for a regular polygon defined
+by the number of sides (or vertices).
+*/
 import java.awt.*;
 
 public class RegularPolygon extends SolidPolygon{

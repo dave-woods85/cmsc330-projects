@@ -1,8 +1,14 @@
-// CMSC 330 Advanced Programming Languages
-// Project 1 Skeleton
-// UMGC CITE
-// August 2021
+/*
+David Woods
+CMSC 330
+Project1
+Prof Suciu
+5 Nov 2026
 
+This class parses the specific production given for project 1.
+It has been modified to include many new productions for the
+new classes for shapes and text.
+*/
 import java.awt.*;
 import java.io.*;
 import java.util.*;
@@ -35,7 +41,7 @@ class Parser {
         return scene;
     }
 
-    // Parses the following productions
+    // Parses the following productions (UPDATED)
 
     // images -> image images | image
     // image -> right_triangle | rectangle

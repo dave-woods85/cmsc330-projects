@@ -1,7 +1,12 @@
-// CMSC 330 Advanced Programming Languages
-// Project 1 Skeleton
-// UMGC CITE
-// August 2021
+/*
+David Woods
+CMSC 330
+Project1
+Prof Suciu
+5 Nov 2026
+
+This class reads/converts tokens from the scene file and passes tokens to the parser.
+*/
 
 import java.io.*;
 

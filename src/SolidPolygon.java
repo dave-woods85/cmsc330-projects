@@ -1,11 +1,14 @@
 /*
 David Woods
-CMSC330
+CMSC 330
 Project1
 Prof Suciu
 5 Nov 2026
 
- */
+This class serves as the superclass for all the new shape classes.
+This is mostly the same as the HollowPolygon class save for how the shape
+is drawn with fillPolygon().
+*/
 import java.awt.*;
 
 public class SolidPolygon extends Polygon_{
