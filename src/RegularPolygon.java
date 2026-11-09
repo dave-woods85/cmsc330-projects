@@ -20,7 +20,7 @@ public class RegularPolygon extends SolidPolygon{
             // Calculate the angle for each vertex
             double angle = (2 * Math.PI * i / sides);
 
-            // Calculate coords and add to the x/y_points lists
+            // Calculate coords, cast back to int, and add to the x/y_points lists
             x_points[i] = (int) Math.round(center.x + radius * Math.cos(angle));
             y_points[i] = (int) Math.round(center.y + radius * Math.sin(angle));
         }
