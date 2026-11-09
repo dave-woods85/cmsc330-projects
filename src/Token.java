@@ -1,7 +1,13 @@
-// CMSC 330 Advanced Programming Languages
-// Project 1 Skeleton
-// UMGC CITE
-// August 2021
+/*
+David Woods
+CMSC 330
+Project1
+Prof Suciu
+5 Nov 2026
+
+This class provides Tokens for each element in the production. Added new shape classes
+as well as new tokens for parameters (radius, offset, sides, etc.)
+*/
 
 // Enumerated type that defines the list of tokens
 
