@@ -6,7 +6,7 @@ Prof Suciu
 5 Nov 2026
 
 This class provides Tokens for each element in the production. Added new shape classes
-as well as new tokens for parameters (radius, offset, sides, etc.)
+(Parallelogram, text, etc.) as well as new tokens for parameters (radius, offset, sides, etc.)
 */
 
 // Enumerated type that defines the list of tokens
